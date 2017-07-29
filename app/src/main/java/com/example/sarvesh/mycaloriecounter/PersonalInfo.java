@@ -3,13 +3,20 @@ package com.example.sarvesh.mycaloriecounter;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class PersonalInfo extends AppCompatActivity {
+import java.util.ArrayList;
+import java.util.List;
+
+public class PersonalInfo extends AppCompatActivity implements OnItemSelectedListener {
 
     private EditText height;
     private EditText weight;
@@ -29,6 +36,29 @@ public class PersonalInfo extends AppCompatActivity {
         btnSubmit = (Button) findViewById(R.id.btnSubmit);
         linearLayout = (LinearLayout) findViewById(R.id.linearLayout);
 
+        // Spinner element
+        Spinner spinner = (Spinner) findViewById(R.id.spinner);
+
+        // Spinner click listener
+        spinner.setOnItemSelectedListener(this);
+
+        // Spinner Drop down elements
+        List <String> categories = new ArrayList <String>();
+        categories.add("Sedentary");
+        categories.add("Lightly Active");
+        categories.add("Moderately Active");
+        categories.add("Very Active");
+        categories.add("Extra Active");
+
+        // Creating adapter for spinner
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter <String>(this, android.R.layout.simple_spinner_item, categories);
+
+        // Drop down layout style - list view with radio button
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // attaching data adapter to spinner
+        spinner.setAdapter(dataAdapter);
+
         linearLayout.setVisibility(LinearLayout.GONE);
 
         btnSubmit.setOnClickListener(new View.OnClickListener() {
@@ -41,9 +71,9 @@ public class PersonalInfo extends AppCompatActivity {
                     int ages = Integer.parseInt(age.getText().toString());
                     if(hgt > 0 && wgt > 0 && ages>0){
                         float bmi = wgt/(hgt * hgt);
-                        double bmrDouble = (10 * wgt) +(6.25 * hgt * 100) - (5 * ages) +5;
-                        int bmr = (int) bmrDouble;
                         String category=bmiCalculate(bmi);
+                        double bmrDouble = ((10 * wgt) +(6.25 * hgt * 100) - (5 * ages) +5)*1.2;
+                        int bmr = (int) bmrDouble;
                         linearLayout.setVisibility(LinearLayout.VISIBLE);
                         txtResult.setText("Your BMI is " + bmi + ". You are " + category + " .Maximum intake of calories daily is " + bmr + " cal. To reduce 0.5kg per week have a daily intake of " + (bmr-500)+ " cal." );
                     }
@@ -102,5 +132,19 @@ public class PersonalInfo extends AppCompatActivity {
             category =  "Very Severely Obese";
         }
         return (category);
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        // On selecting a spinner item
+        String item = parent.getItemAtPosition(position).toString();
+
+        // Showing selected spinner item
+        Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
+    }
+
+    public void onNothingSelected(AdapterView<?> arg0) {
+        // TODO Auto-generated method stub
+
     }
 }

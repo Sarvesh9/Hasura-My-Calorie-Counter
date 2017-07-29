@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffbb33"
-    tools:context="com.example.sarvesh.mycaloriecounter.Login">
+    tools:context="com.example.sarvesh.mycaloriecounter.TotalIntakeView">
 
     <ImageView
         android:id="@+id/imageView"
@@ -123,4 +122,5 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="@android:color/background_light"
         android:textSize="24sp" />
+
 </RelativeLayout>

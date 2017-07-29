@@ -19,4 +19,13 @@
 
     <string name="play_again_desc">To see the welcome slider again, goto Settings -> apps -> welcome slider -> clear data</string>
     <string name="play_again">Play Again</string>
+
+    <string name="spinner_title">Select Category</string>
+
+    //Register Form Error Messsages
+    <string name="nameerror">Enter Valid Name</string>
+    <string name="emailerror">Enter Valid Email</string>
+    <string name="passworderror">Enter atleast 8 character Password</string>
+    <string name="mobileerror">Enter Valid Mobile Number</string>
+
 </resources>

@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.sarvesh.mycaloriecounter">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -20,7 +22,12 @@
             android:name=".MainActivity"
             android:label="@string/title_activity_welcome"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".PersonalInfo"></activity>
+        <activity android:name=".SignUp"></activity>
+        <activity android:name=".Login"></activity>
+        <activity
+            android:name=".PersonalInfo"
+            android:windowSoftInputMode="adjustPan|adjustResize"></activity>
+        <activity android:name=".TotalIntakeView"></activity>
     </application>
 
 </manifest>

@@ -5,12 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:scrollbars="vertical"
     tools:context="com.example.sarvesh.mycaloriecounter.PersonalInfo">
 
     <TextView
         android:id="@+id/textHeight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/textWeight"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/textWeight"
+        android:layout_marginTop="73dp"
         android:text="Height:"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -18,16 +23,18 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.098"
-        android:layout_marginTop="73dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignRight="@+id/textWeight"
-        android:layout_alignEnd="@+id/textWeight" />
+        app:layout_constraintVertical_bias="0.098" />
 
     <TextView
         android:id="@+id/textWeight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/editHeight"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_toLeftOf="@+id/editWeight"
+        android:layout_toStartOf="@+id/editWeight"
         android:text="Weight:"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -35,119 +42,137 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.098"
-        android:layout_marginTop="29dp"
-        android:layout_below="@+id/editHeight"
-        android:layout_toLeftOf="@+id/editWeight"
-        android:layout_toStartOf="@+id/editWeight"
-        android:layout_marginRight="8dp"
-        android:layout_marginEnd="8dp" />
+        app:layout_constraintVertical_bias="0.098" />
 
     <TextView
         android:id="@+id/textAge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Age:"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:layout_marginTop="24dp"
-        android:layout_below="@+id/editWeight"
+        android:layout_alignEnd="@+id/textWeight"
         android:layout_alignRight="@+id/textWeight"
-        android:layout_alignEnd="@+id/textWeight" />
+        android:layout_below="@+id/editWeight"
+        android:layout_marginTop="7dp"
+        android:text="Age:"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/textAge"
+        android:layout_alignRight="@+id/textAge"
+        android:layout_below="@+id/editAge"
+        android:layout_marginTop="11dp"
+        android:text="Category:"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+    <!-- Spinner Element -->
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="200dp"
+        android:layout_height="30dp"
+        android:layout_alignLeft="@+id/editAge"
+        android:layout_alignStart="@+id/editAge"
+        android:layout_alignTop="@+id/textView9"
+        android:layout_marginLeft="7dp"
+        android:layout_marginStart="7dp"
+        android:prompt="@string/spinner_title"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
     <EditText
         android:id="@+id/editHeight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="numberDecimal"
-        android:hint="Enter your height in cms"
         android:layout_alignBaseline="@+id/textHeight"
         android:layout_alignBottom="@+id/textHeight"
         android:layout_alignLeft="@+id/btnSubmit"
-        android:layout_alignStart="@+id/btnSubmit" />
+        android:layout_alignStart="@+id/btnSubmit"
+        android:ems="10"
+        android:hint="Enter your height in cms"
+        android:inputType="numberDecimal" />
 
     <EditText
         android:id="@+id/editWeight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="numberDecimal"
-        android:hint="Enter your weight in kgs"
-        android:layout_alignBaseline="@+id/textWeight"
-        android:layout_alignBottom="@+id/textWeight"
         android:layout_alignLeft="@+id/editHeight"
-        android:layout_alignStart="@+id/editHeight" />
+        android:layout_alignStart="@+id/editHeight"
+        android:layout_alignTop="@+id/textWeight"
+        android:ems="10"
+        android:hint="Enter your weight in kgs"
+        android:inputType="numberDecimal"
+        android:translationY="-9dp" />
 
     <EditText
         android:id="@+id/editAge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="number"
-        android:hint="Enter your age in years"
         android:layout_alignBaseline="@+id/textAge"
         android:layout_alignBottom="@+id/textAge"
         android:layout_alignLeft="@+id/editWeight"
-        android:layout_alignStart="@+id/editWeight" />
+        android:layout_alignStart="@+id/editWeight"
+        android:ems="10"
+        android:hint="Enter your age in years"
+        android:inputType="number" />
 
     <Button
         android:id="@+id/btnSubmit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="27dp"
-        android:text="Submit"
-        android:layout_below="@+id/textAge"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@+id/editAge"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="116dp"
+        android:text="Submit" />
 
     <ImageView
         android:id="@+id/imgHeight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/imgWeight"
+        android:layout_alignStart="@+id/imgWeight"
+        android:layout_alignTop="@+id/textHeight"
         android:focusableInTouchMode="false"
         android:focusedByDefault="true"
         android:scaleX="1.8"
         android:scaleY="1.8"
-        app:srcCompat="@drawable/height"
-        android:layout_alignTop="@+id/textHeight"
-        android:layout_alignLeft="@+id/imgWeight"
-        android:layout_alignStart="@+id/imgWeight" />
+        app:srcCompat="@drawable/height" />
 
     <ImageView
         android:id="@+id/imgWeight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:scaleX="1.8"
-        android:scaleY="1.8"
-        app:srcCompat="@drawable/weight"
-        android:layout_alignTop="@+id/textWeight"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/textWeight"
         android:layout_marginLeft="12dp"
-        android:layout_marginStart="12dp" />
+        android:layout_marginStart="12dp"
+        android:scaleX="1.8"
+        android:scaleY="1.8"
+        app:srcCompat="@drawable/weight" />
 
     <ImageView
         android:id="@+id/imgAge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/imgWeight"
+        android:layout_alignStart="@+id/imgWeight"
+        android:layout_alignTop="@+id/textAge"
         android:scaleX="1.8"
         android:scaleY="1.8"
-        app:srcCompat="@drawable/age"
-        android:layout_alignBottom="@+id/editAge"
-        android:layout_alignLeft="@+id/imgWeight"
-        android:layout_alignStart="@+id/imgWeight" />
+        app:srcCompat="@drawable/age" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="400dp"
         android:layout_height="400dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/btnSubmit"
+        android:layout_marginTop="30dp"
         android:orientation="vertical"
         android:translationX="0dp"
         android:translationY="-10dp"
-        android:weightSum="1"
-        android:layout_below="@+id/btnSubmit"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="30dp">
+        android:weightSum="1">
 
         <TextView
             android:id="@+id/textView2"
