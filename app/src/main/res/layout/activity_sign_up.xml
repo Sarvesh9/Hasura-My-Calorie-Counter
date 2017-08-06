@@ -116,26 +116,26 @@
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-smallcaps"
-        android:text="MOBILE-NO:"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:layout_below="@+id/editPassword"
         android:layout_centerHorizontal="true"
-        android:textAlignment="center"
-        android:textColor="@android:color/black"
-        android:layout_marginTop="33dp" />
+        android:layout_marginTop="27dp"
 
-    <EditText
-        android:id="@+id/editMobileNo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="GENDER"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="@android:color/black" />
+
+    <Spinner
+        android:id="@+id/gender"
+        android:layout_width="230dp"
+        android:layout_height="40dp"
         android:layout_above="@+id/btnSubmit"
         android:layout_alignEnd="@+id/editPassword"
         android:layout_alignRight="@+id/editPassword"
         android:ems="10"
-        android:hint="Enter your mobile no"
         android:textAlignment="center"
-        android:inputType="number" />
+        android:spinnerMode="dialog" />
 
     <Button
         android:id="@+id/btnSubmit"

@@ -5,12 +5,19 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Patterns;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import io.hasura.sdk.Hasura;
 import io.hasura.sdk.HasuraClient;
@@ -20,13 +27,11 @@ import io.hasura.sdk.exception.HasuraException;
 import io.hasura.sdk.exception.HasuraInitException;
 import io.hasura.sdk.responseListener.SignUpResponseListener;
 
-public class SignUp extends AppCompatActivity{
+public class SignUp extends AppCompatActivity implements OnItemSelectedListener {
 
     private EditText editTextName;
     private EditText editTextEmail;
     private EditText editTextPassword;
-    private EditText editTextMobile;
-
     private Button submit;
     HasuraUser user;
     HasuraClient client;
@@ -40,28 +45,41 @@ public class SignUp extends AppCompatActivity{
 
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
 
+        Spinner spinner1 = (Spinner) findViewById(R.id.gender);
+
+        spinner1.setOnItemSelectedListener(this);
+
+        List<String> genders = new ArrayList<String>();
+        genders.add("Male");
+        genders.add("Female");
+
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, genders);
+
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        spinner1.setAdapter(dataAdapter);
+
         try {
             Hasura.setProjectConfig(new ProjectConfig.Builder()
-                    .setCustomBaseDomain("hasuramycaloriecounter.hasura.me").enableOverHttp()
+                    .setCustomBaseDomain("newsman88.hasura-app.io")
+//                    .enableOverHttp()
                     .build())
                     .initialise(this);
         } catch (HasuraInitException e) {
             e.printStackTrace();
         }
-        HasuraClient client = Hasura.getClient();
+        client = Hasura.getClient();
         user = client.getUser();
 
         editTextName = (EditText) findViewById(R.id.editName);
         editTextEmail = (EditText) findViewById(R.id.editEmail);
         editTextPassword = (EditText) findViewById(R.id.editPassword);
-        editTextMobile = (EditText) findViewById(R.id.editMobileNo);
         submit = (Button) findViewById(R.id.btnSubmit);
 
         awesomeValidation.addValidation(this, R.id.editName, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.nameerror);
         awesomeValidation.addValidation(this, R.id.editEmail, Patterns.EMAIL_ADDRESS, R.string.emailerror);
         String regexPassword = ".{8,}";
         awesomeValidation.addValidation(this, R.id.editPassword,regexPassword, R.string.passworderror);
-        awesomeValidation.addValidation(this, R.id.editMobileNo, "^[2-9]{2}[0-9]{8}$", R.string.mobileerror);
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,27 +89,38 @@ public class SignUp extends AppCompatActivity{
         });
     }
 
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        // On selecting a spinner item
+        String item = parent.getItemAtPosition(position).toString();
+
+        // Showing selected spinner item
+        if (!item.equals("Select Gender")){
+            Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
+        }
+    }
+
+    public void onNothingSelected(AdapterView<?> arg0) {
+        // TODO Auto-generated method stub
+        Toast.makeText(SignUp.this, "Select a Gender", Toast.LENGTH_LONG).show();
+    }
         /**
          * Validating form
          */
 
         private void submitForm() {
             //first validate the form then move ahead
-            //if this becomes true that means validation is successfull
+            //if this becomes true that means validation is successful
             if (awesomeValidation.validate()) {
-                Toast.makeText(this, "Registration Successfull", Toast.LENGTH_LONG).show();
-                Intent myIntent = new Intent(SignUp.this, Login.class);
-                startActivity(myIntent);
+                Toast.makeText(this, "Registration Successful", Toast.LENGTH_LONG).show();
                 //process the data further
                 String username = editTextName.getText().toString();
                 String password = editTextPassword.getText().toString();
                 String email = editTextEmail.getText().toString();
-                String mobile = editTextMobile.getText().toString();
 
                 user.setUsername(username);
                 user.setPassword(password);
                 user.setEmail(email);
-                user.setMobile(mobile);
                 user.signUp(new SignUpResponseListener() {
                     @Override
                     public void onSuccessAwaitingVerification(HasuraUser user) {
@@ -101,48 +130,6 @@ public class SignUp extends AppCompatActivity{
 
                     @Override
                     public void onSuccess(HasuraUser user) {
-                        //Now Hasura.getClient().getCurrentUser() will have this user
-//                        try {
-                            //JSON query for inserting user (REFERENCE)
-//                    {
-//                        "type" : "insert",
-//                        "args" : {
-//                            "table" : "user_info",
-//                            "objects": [{"name" : "username"}]
-//                        }
-//                    }
-
-//                        JSONObject nameJSON = new JSONObject();
-//                        nameJSON.put("name", username);
-//
-//                        JSONArray colsList = new JSONArray();
-//                        colsList.put(nameJSON);
-//
-//                        JSONObject args = new JSONObject();
-//                        args.put("table", "user_info");
-//                        args.put("objects", colsList);
-
-//                        JSONObject insertUserJSON = new JSONObject();
-//                        insertUserJSON.put("type", "insert");
-//                        insertUserJSON.put("args", args);
-
-//                            client.useDataService()
-//                               .setRequestBody(insertUserJSON)
-//                                    .expectResponseType(RegisterUserResponse.class)
-//                                    .enqueue(new Callback<RegisterUserResponse, HasuraException>() {
-//                                        @Override
-//                                        public void onSuccess(RegisterUserResponse registerUserResponse) {
-//                                            Toast.makeText(getApplicationContext(), "User Created ", Toast.LENGTH_SHORT).show();
-//                                        }
-//
-//                                        @Override
-//                                        public void onFailure(HasuraException e) {
-//                                            Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_SHORT).show();
-//                                        }
-//                                    });
-//                        } catch (JSONException e) {
-//                            Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_SHORT).show();
-//                        }
                         Toast.makeText(getApplicationContext(), "Thank You! ", Toast.LENGTH_SHORT).show();
                         Intent myIntent = new Intent(SignUp.this, Login.class);
                         startActivity(myIntent);
@@ -153,7 +140,6 @@ public class SignUp extends AppCompatActivity{
                         Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_SHORT).show();
                     }
                 });
-
             }
         }
 }

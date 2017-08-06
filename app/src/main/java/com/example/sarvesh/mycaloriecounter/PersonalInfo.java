@@ -138,13 +138,32 @@ public class PersonalInfo extends AppCompatActivity implements OnItemSelectedLis
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         // On selecting a spinner item
         String item = parent.getItemAtPosition(position).toString();
-
-        // Showing selected spinner item
-        Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
     }
 
     public void onNothingSelected(AdapterView<?> arg0) {
         // TODO Auto-generated method stub
-
+        Toast.makeText(PersonalInfo.this,"Make a category selection",Toast.LENGTH_LONG).show();
     }
 }
+
+//if(height.getText().length()<0){
+//        Toast.makeText(PersonalInfo.this,"Please enter a valid Height value.",Toast.LENGTH_LONG).show();
+//        linearLayout.setVisibility(LinearLayout.GONE);
+//        height.setText("");
+//        height.requestFocus();
+//        return;
+//        }
+//if(weight.getText().length()<0){
+//        Toast.makeText(PersonalInfo.this,"Please enter a valid Weight value.",Toast.LENGTH_LONG).show();
+//        linearLayout.setVisibility(LinearLayout.GONE);
+//        weight.setText("");
+//        weight.requestFocus();
+//        return;
+//}
+//if(age.getText().length()<0){
+//        Toast.makeText(PersonalInfo.this,"Please enter a valid Age value.",Toast.LENGTH_LONG).show();
+//        linearLayout.setVisibility(LinearLayout.GONE);
+//        age.setText("");
+//        age.requestFocus();
+//        return;
+//        }

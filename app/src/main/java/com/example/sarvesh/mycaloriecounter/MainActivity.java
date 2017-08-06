@@ -20,9 +20,9 @@ public class MainActivity extends AppCompatActivity {
                 PrefManager prefManager = new PrefManager(getApplicationContext());
 
                 // make first time launch TRUE
-                prefManager.setFirstTimeLaunch(true);
+                prefManager.setFirstTimeLaunch(false);
 
-                startActivity(new Intent(MainActivity.this, Login.class));
+                startActivity(new Intent(MainActivity.this, WelcomeActivity.class));
                 finish();
             }
         });
