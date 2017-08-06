@@ -36,76 +36,143 @@ public class PersonalInfo extends AppCompatActivity implements OnItemSelectedLis
         btnSubmit = (Button) findViewById(R.id.btnSubmit);
         linearLayout = (LinearLayout) findViewById(R.id.linearLayout);
 
-        // Spinner element
-        Spinner spinner = (Spinner) findViewById(R.id.spinner);
+// Spinner element
+        final Spinner spinner1 = (Spinner) findViewById(R.id.category);
+        final Spinner spinner2 = (Spinner) findViewById(R.id.criteria);
 
         // Spinner click listener
-        spinner.setOnItemSelectedListener(this);
+        spinner1.setOnItemSelectedListener(this);
+        spinner2.setOnItemSelectedListener(this);
 
-        // Spinner Drop down elements
-        List <String> categories = new ArrayList <String>();
+        // Spinner Category Drop down elements
+        List<String> categories = new ArrayList<String>();
+        categories.add("Select Category");
         categories.add("Sedentary");
         categories.add("Lightly Active");
         categories.add("Moderately Active");
         categories.add("Very Active");
         categories.add("Extra Active");
 
+        //Spinner Criteria Drop Down elements
+        final List<String> weightcriteria = new ArrayList<String>();
+        weightcriteria.add("Select Criteria");
+        weightcriteria.add("Reduce 0.5kg per week");
+        weightcriteria.add("Maintain Weight");
+        weightcriteria.add("Increase 0.5kg per week");
+
         // Creating adapter for spinner
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter <String>(this, android.R.layout.simple_spinner_item, categories);
+        ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
+        ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, weightcriteria);
 
         // Drop down layout style - list view with radio button
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        dataAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         // attaching data adapter to spinner
-        spinner.setAdapter(dataAdapter);
-
-        linearLayout.setVisibility(LinearLayout.GONE);
+        spinner1.setAdapter(dataAdapter1);
+        spinner2.setAdapter(dataAdapter2);
 
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (height.getText().length()>0 && weight.getText().length()>0 && age.getText().length()>0) {
-                    float hgt = Float.parseFloat(height.getText().toString());
-                    hgt =  hgt /100;
-                    float wgt = Float.parseFloat(weight.getText().toString());
-                    int ages = Integer.parseInt(age.getText().toString());
-                    if(hgt > 0 && wgt > 0 && ages>0){
-                        float bmi = wgt/(hgt * hgt);
-                        String category=bmiCalculate(bmi);
-                        double bmrDouble = ((10 * wgt) +(6.25 * hgt * 100) - (5 * ages) +5)*1.2;
-                        int bmr = (int) bmrDouble;
-                        linearLayout.setVisibility(LinearLayout.VISIBLE);
-                        txtResult.setText("Your BMI is " + bmi + ". You are " + category + " .Maximum intake of calories daily is " + bmr + " cal. To reduce 0.5kg per week have a daily intake of " + (bmr-500)+ " cal." );
-                    }
-                    else {
-                        if(height.getText().length()<0){
-                            Toast.makeText(PersonalInfo.this,"Please enter a valid Height value.",Toast.LENGTH_LONG).show();
-                            linearLayout.setVisibility(LinearLayout.GONE);
-                            height.setText("");
-                            height.requestFocus();
-                        }
-                        else if(weight.getText().length()<0){
-                            Toast.makeText(PersonalInfo.this,"Please enter a valid Weight value.",Toast.LENGTH_LONG).show();
-                            linearLayout.setVisibility(LinearLayout.GONE);
-                            weight.setText("");
-                            weight.requestFocus();
-                        }
-                        else{
-                            Toast.makeText(PersonalInfo.this,"Please enter a valid Age value.",Toast.LENGTH_LONG).show();
-                            linearLayout.setVisibility(LinearLayout.GONE);
-                            age.setText("");
-                            age.requestFocus();
-                        }
-                    }
-                }
-                else {
-                    Toast.makeText(PersonalInfo.this,"Fill all the fields.",Toast.LENGTH_LONG).show();
+                if (height.getText().length() == 0) {
+                    Toast.makeText(PersonalInfo.this, "Please enter a valid Height value.", Toast.LENGTH_LONG).show();
                     linearLayout.setVisibility(LinearLayout.GONE);
+                    height.setText("");
+                    height.requestFocus();
+                    return;
                 }
+                if (weight.getText().length() == 0) {
+                    Toast.makeText(PersonalInfo.this, "Please enter a valid Weight value.", Toast.LENGTH_LONG).show();
+                    linearLayout.setVisibility(LinearLayout.GONE);
+                    weight.setText("");
+                    weight.requestFocus();
+                    return;
+                }
+                if (age.getText().length() == 0) {
+                    Toast.makeText(PersonalInfo.this, "Please enter a valid Age value.", Toast.LENGTH_LONG).show();
+                    linearLayout.setVisibility(LinearLayout.GONE);
+                    age.setText("");
+                    age.requestFocus();
+                    return;
+                }
+                final String text = spinner1.getSelectedItem().toString();
+                final String weightcrt = spinner2.getSelectedItem().toString();
+                if (text.equals("Select Category")) {
+                    Toast.makeText(PersonalInfo.this, "Please select a category", Toast.LENGTH_LONG).show();
+                    linearLayout.setVisibility(LinearLayout.GONE);
+                    return;
+                }
+                if (weightcrt.equals("Select Criteria")) {
+                    Toast.makeText(PersonalInfo.this, "Please select a diet criteria", Toast.LENGTH_LONG).show();
+                    linearLayout.setVisibility(LinearLayout.GONE);
+                    return;
+                }
+                float hgt = Float.parseFloat(height.getText().toString());
+                float wgt = Float.parseFloat(weight.getText().toString());
+                int ages = Integer.parseInt(age.getText().toString());
+                if (hgt > 240) {
+                    Toast.makeText(PersonalInfo.this, "Please enter a valid Height.", Toast.LENGTH_LONG).show();
+                    linearLayout.setVisibility(LinearLayout.GONE);
+                    height.setText("");
+                    height.requestFocus();
+                    return;
+                }
+                if (wgt > 300) {
+                    Toast.makeText(PersonalInfo.this, "Please enter a valid Weight.", Toast.LENGTH_LONG).show();
+                    linearLayout.setVisibility(LinearLayout.GONE);
+                    height.setText("");
+                    height.requestFocus();
+                    return;
+                }
+                if (ages > 110) {
+                    Toast.makeText(PersonalInfo.this, "Please enter a valid Age value.", Toast.LENGTH_LONG).show();
+                    linearLayout.setVisibility(LinearLayout.GONE);
+                    age.setText("");
+                    age.requestFocus();
+                    return;
+                }
+                float hgtb = hgt / 100;
+                float bmi = wgt / (hgtb * hgtb);
+                double BMIFactor = ActivityFactor(text);
+                int value = CriteriaFactor(weightcrt);
+                double BMRDouble = ((10 * wgt) + (6.25 * hgt) - (5 * ages)) * BMIFactor;
+                int bmr = (int)BMRDouble + value;
+                String category = BMICalculate(bmi);
+                linearLayout.setVisibility(LinearLayout.VISIBLE);
+                txtResult.setText("Your BMI is " + bmi + ". You are " + category + " .Maximum intake of calories daily is " + bmr + " cal.");
             }
         });
     }
-    public String bmiCalculate(float x){
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        // On selecting a spinner item
+        String item = parent.getItemAtPosition(position).toString();
+
+        // Showing selected spinner item
+        if (!item.equals("Select Category") || (!item.equals("Select Criteria"))){
+            Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
+        }
+    }
+
+    public void onNothingSelected(AdapterView<?> arg0) {
+        // TODO Auto-generated method stub
+        Toast.makeText(PersonalInfo.this, "Select a value", Toast.LENGTH_LONG).show();
+    }
+    public int CriteriaFactor(String weightcrt){
+        int value=0;
+        if (weightcrt.equals("Reduce 0.5kg per week")){
+            value= -500;
+        }
+        if (weightcrt.equals("Maintain Weight")){
+            value= 0;
+        }
+        if(weightcrt.equals("Increase 0.5kg per week")){
+            value= 500;
+        }
+        return (value);
+    }
+    public String BMICalculate(float x){
         String category = "";
         if (x<15){
             category =  "Very severely underweight";
@@ -134,36 +201,21 @@ public class PersonalInfo extends AppCompatActivity implements OnItemSelectedLis
         return (category);
     }
 
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        // On selecting a spinner item
-        String item = parent.getItemAtPosition(position).toString();
-    }
-
-    public void onNothingSelected(AdapterView<?> arg0) {
-        // TODO Auto-generated method stub
-        Toast.makeText(PersonalInfo.this,"Make a category selection",Toast.LENGTH_LONG).show();
+    public double ActivityFactor(String item){
+        if(item.equals("Sedentary")){
+            return (1.2);
+        }
+        else if (item.equals("Lightly Active")){
+            return(1.375);
+        }
+        else if(item.equals("Moderately Active")){
+            return(1.55);
+        }
+        else if (item.equals("Very Active")){
+            return(1.725);
+        }
+        else{
+            return(1.9);
+        }
     }
 }
-
-//if(height.getText().length()<0){
-//        Toast.makeText(PersonalInfo.this,"Please enter a valid Height value.",Toast.LENGTH_LONG).show();
-//        linearLayout.setVisibility(LinearLayout.GONE);
-//        height.setText("");
-//        height.requestFocus();
-//        return;
-//        }
-//if(weight.getText().length()<0){
-//        Toast.makeText(PersonalInfo.this,"Please enter a valid Weight value.",Toast.LENGTH_LONG).show();
-//        linearLayout.setVisibility(LinearLayout.GONE);
-//        weight.setText("");
-//        weight.requestFocus();
-//        return;
-//}
-//if(age.getText().length()<0){
-//        Toast.makeText(PersonalInfo.this,"Please enter a valid Age value.",Toast.LENGTH_LONG).show();
-//        linearLayout.setVisibility(LinearLayout.GONE);
-//        age.setText("");
-//        age.requestFocus();
-//        return;
-//        }

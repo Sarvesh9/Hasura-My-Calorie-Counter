@@ -143,3 +143,17 @@ public class SignUp extends AppCompatActivity implements OnItemSelectedListener 
             }
         }
 }
+
+//var jsonQuery = "{
+    // \"type\":\"insert\",
+    // \"args\":
+        // {\"table\":\"expense\",
+        // \"objects\":[
+            // {\"user_id\":\"1\",
+            // \"exp_name\":\"News\",
+            // \"exp_amt\":\"100\",
+            // \"exp_created\":\"2017-06-24T18:50:24.029984+00:00\",
+            // \"exp_category\":\"2\"
+            // }]
+        // }
+    // }"
