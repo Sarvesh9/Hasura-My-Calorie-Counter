@@ -35,6 +35,7 @@ public class PersonalInfo extends AppCompatActivity implements OnItemSelectedLis
         txtResult = (TextView) findViewById(R.id.txtResult);
         btnSubmit = (Button) findViewById(R.id.btnSubmit);
         linearLayout = (LinearLayout) findViewById(R.id.linearLayout);
+        linearLayout.setVisibility(LinearLayout.GONE);
 
 // Spinner element
         final Spinner spinner1 = (Spinner) findViewById(R.id.category);

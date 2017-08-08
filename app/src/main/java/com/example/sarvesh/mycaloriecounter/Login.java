@@ -8,7 +8,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.basgeekball.awesomevalidation.AwesomeValidation;
+import com.basgeekball.awesomevalidation.ValidationStyle;
+
 import io.hasura.sdk.Hasura;
+import io.hasura.sdk.HasuraClient;
 import io.hasura.sdk.HasuraUser;
 import io.hasura.sdk.ProjectConfig;
 import io.hasura.sdk.exception.HasuraException;
@@ -23,25 +27,31 @@ public class Login extends AppCompatActivity {
     private Button btnNewUser;
 
     HasuraUser user;
-
+    HasuraClient client;
+    //defining AwesomeValidation object
+    private AwesomeValidation awesomeValidation;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
+
         //init
         try {
             Hasura.setProjectConfig(new ProjectConfig.Builder()
-                    .setCustomBaseDomain("newsman88.hasura-app.io").enableOverHttp()
+                    .setCustomBaseDomain("newsman88.hasura-app.io")
+                    //.enableOverHttp()
                     .build())
                     .initialise(this);
         } catch (HasuraInitException e) {
             e.printStackTrace();
         }
-        user = Hasura.getClient().getUser();
+        client = Hasura.getClient();
+        user = client.getUser();
 
-        editTextName = (EditText) findViewById(R.id.editName);
-        editTextPassword = (EditText) findViewById(R.id.editPassword);
+        editTextName = (EditText) findViewById(R.id.editTextName);
+        editTextPassword = (EditText) findViewById(R.id.editTextPassword);
         btnLogin = (Button) findViewById(R.id.btnSubmitLogin);
         btnNewUser = (Button) findViewById(R.id.btnLoginRegister);
 
@@ -52,7 +62,9 @@ public class Login extends AppCompatActivity {
                 startActivity(myIntent);
             }
         });
-
+        awesomeValidation.addValidation(this, R.id.editTextName, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.nameerror);
+        String regexPassword = ".{8,}";
+        awesomeValidation.addValidation(this, R.id.editTextPassword,regexPassword, R.string.passworderror);
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -61,26 +73,27 @@ public class Login extends AppCompatActivity {
         });
     }
     private void login() {
-        String username = editTextName.getText().toString();
-        String password = editTextPassword.getText().toString();
 
-        user.setUsername(username);
-        user.setPassword(password);
-        user.login(new AuthResponseListener() {
-            @Override
-            public void onSuccess(String message) {
-                //Now Hasura.getClient().getCurrentUser() will have this user
-                Toast.makeText(Login.this, "Logged in", Toast.LENGTH_SHORT).show();
-                Intent myIntent = new Intent(Login.this, TotalIntakeView.class);
-                startActivity(myIntent);
-            }
+        if (awesomeValidation.validate()) {
 
-            @Override
-            public void onFailure(HasuraException e) {
-                //Handle Error
-                Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_SHORT).show();
-            }
-        });
+            user.setUsername(editTextName.getText().toString());
+            user.setPassword(editTextPassword.getText().toString());
 
+            user.login(new AuthResponseListener() {
+                @Override
+                public void onSuccess(String message) {
+                    //Now Hasura.getClient().getCurrentUser() will have this user
+                    Toast.makeText(Login.this, "Logged in", Toast.LENGTH_SHORT).show();
+                    Intent myIntent = new Intent(Login.this, TotalIntakeView.class);
+                    startActivity(myIntent);
+                }
+
+                @Override
+                public void onFailure(HasuraException e) {
+                    //Handle Error
+                    Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
     }
 }

@@ -16,9 +16,14 @@ import android.widget.Toast;
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import io.hasura.sdk.Callback;
 import io.hasura.sdk.Hasura;
 import io.hasura.sdk.HasuraClient;
 import io.hasura.sdk.HasuraUser;
@@ -35,6 +40,7 @@ public class SignUp extends AppCompatActivity implements OnItemSelectedListener 
     private Button submit;
     HasuraUser user;
     HasuraClient client;
+    private Spinner spinner1;
     //defining AwesomeValidation object
     private AwesomeValidation awesomeValidation;
 
@@ -45,7 +51,7 @@ public class SignUp extends AppCompatActivity implements OnItemSelectedListener 
 
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
 
-        Spinner spinner1 = (Spinner) findViewById(R.id.gender);
+        spinner1 = (Spinner) findViewById(R.id.gender);
 
         spinner1.setOnItemSelectedListener(this);
 
@@ -114,9 +120,10 @@ public class SignUp extends AppCompatActivity implements OnItemSelectedListener 
             if (awesomeValidation.validate()) {
                 Toast.makeText(this, "Registration Successful", Toast.LENGTH_LONG).show();
                 //process the data further
-                String username = editTextName.getText().toString();
+                final String username = editTextName.getText().toString();
                 String password = editTextPassword.getText().toString();
                 String email = editTextEmail.getText().toString();
+                final String gender = spinner1.getSelectedItem().toString();
 
                 user.setUsername(username);
                 user.setPassword(password);
@@ -130,8 +137,45 @@ public class SignUp extends AppCompatActivity implements OnItemSelectedListener 
 
                     @Override
                     public void onSuccess(HasuraUser user) {
+
+                        try{
+
+                        JSONObject nameJSON = new JSONObject();
+                        nameJSON.put("name", username);
+                        nameJSON.put("gender",gender);
+
+                        JSONArray colsList = new JSONArray();
+                        colsList.put(nameJSON);
+
+                        JSONObject args = new JSONObject();
+                        args.put("table", "User");
+                        args.put("objects", colsList);
+
+                        JSONObject insertUserJSON = new JSONObject();
+                        insertUserJSON.put("type", "insert");
+                        insertUserJSON.put("args", args);
+
+                        client.useDataService()
+                                .setRequestBody(insertUserJSON)
+                                .expectResponseType(RegisterUserResponse.class)
+                                .enqueue(new Callback<RegisterUserResponse, HasuraException>() {
+                                    @Override
+                                    public void onSuccess(RegisterUserResponse registerUserResponse) {
+                                        Toast.makeText(getApplicationContext(), "User Created ", Toast.LENGTH_SHORT).show();
+                                    }
+
+                                    @Override
+                                    public void onFailure(HasuraException e) {
+                                        Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                    }
+                catch (JSONException e){
+                        Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_SHORT).show();
+                    }
+
                         Toast.makeText(getApplicationContext(), "Thank You! ", Toast.LENGTH_SHORT).show();
-                        Intent myIntent = new Intent(SignUp.this, Login.class);
+                        Intent myIntent = new Intent(SignUp.this, TotalIntakeView.class);
                         startActivity(myIntent);
                     }
 
@@ -143,17 +187,3 @@ public class SignUp extends AppCompatActivity implements OnItemSelectedListener 
             }
         }
 }
-
-//var jsonQuery = "{
-    // \"type\":\"insert\",
-    // \"args\":
-        // {\"table\":\"expense\",
-        // \"objects\":[
-            // {\"user_id\":\"1\",
-            // \"exp_name\":\"News\",
-            // \"exp_amt\":\"100\",
-            // \"exp_created\":\"2017-06-24T18:50:24.029984+00:00\",
-            // \"exp_category\":\"2\"
-            // }]
-        // }
-    // }"

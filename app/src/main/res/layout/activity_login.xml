@@ -26,9 +26,10 @@
         android:textColor="@android:color/black"
         tools:layout_editor_absoluteY="66dp"
         tools:layout_editor_absoluteX="170dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp" />
+        android:layout_alignBottom="@+id/imageView"
+        android:layout_alignRight="@+id/textView3"
+        android:layout_alignEnd="@+id/textView3"
+        android:layout_marginBottom="11dp" />
 
     <TextView
         android:id="@+id/textView2"
@@ -48,19 +49,17 @@
         android:id="@+id/editTextName"
         android:layout_width="197dp"
         android:layout_height="41dp"
-        android:ems="10"
-        android:fontFamily="sans-serif"
-        android:hint="Enter your name:"
-        android:imeOptions="actionNext"
-        android:inputType="textEmailAddress"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        tools:layout_editor_absoluteX="83dp"
-        tools:layout_editor_absoluteY="176dp"
         android:layout_above="@+id/textView3"
         android:layout_alignLeft="@+id/editTextPassword"
         android:layout_alignStart="@+id/editTextPassword"
-        android:layout_marginBottom="7dp" />
+        android:layout_marginBottom="7dp"
+        android:ems="10"
+        android:hint="Enter your name:"
+        android:imeOptions="actionNext"
+        android:textAlignment="center"
+        android:inputType="textEmailAddress"
+        tools:layout_editor_absoluteX="83dp"
+        tools:layout_editor_absoluteY="176dp" />
 
     <TextView
         android:id="@+id/textView3"
@@ -80,16 +79,15 @@
         android:id="@+id/editTextPassword"
         android:layout_width="187dp"
         android:layout_height="38dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
         android:ems="10"
         android:hint="*****"
-        android:inputType="textPassword"
-        android:imeOptions="actionDone"
         android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:imeOptions="actionDone"
+        android:inputType="textPassword"
         tools:layout_editor_absoluteX="99dp"
-        tools:layout_editor_absoluteY="289dp"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        tools:layout_editor_absoluteY="289dp" />
 
     <Button
         android:id="@+id/btnSubmitLogin"
@@ -115,10 +113,10 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/editTextPassword"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="77dp"
+        android:layout_marginTop="104dp"
         android:background="@color/colorPrimary"
         android:fontFamily="sans-serif-smallcaps"
-        android:text="New user?SignUp here!"
+        android:text="New user?   SignUp here!"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="@android:color/background_light"
