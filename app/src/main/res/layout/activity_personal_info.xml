@@ -6,133 +6,138 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:scrollbars="vertical"
+    android:background="@drawable/slus"
     tools:context="com.example.sarvesh.mycaloriecounter.PersonalInfo">
 
-    <EditText
-        android:id="@+id/editHeight"
+    <!-- Spinner Element -->
+    <TextView
+        android:id="@+id/textView13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:ellipsize="start"
-        android:hint="Enter Height in cms"
-        android:inputType="numberDecimal"
-        android:layout_above="@+id/editWeight"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="11dp" />
-
-    <EditText
-        android:id="@+id/editWeight"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:ellipsize="start"
-        android:hint="Enter Weight in kgs"
-        android:inputType="numberDecimal"
-        android:layout_above="@+id/editAge"
-        android:layout_alignLeft="@+id/editHeight"
-        android:layout_alignStart="@+id/editHeight"
-        android:layout_marginBottom="9dp" />
-
-    <EditText
-        android:id="@+id/editAge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Enter age in yrs"
-        android:inputType="numberDecimal"
-        android:layout_above="@+id/category"
-        android:layout_alignLeft="@+id/editWeight"
-        android:layout_alignStart="@+id/editWeight" />
+        android:layout_alignLeft="@+id/category"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/category"
+        android:layout_marginTop="43dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="Personal Info"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="@color/colorPrimaryDark" />
 
     <Spinner
         android:id="@+id/category"
         android:layout_width="230dp"
         android:layout_height="40dp"
-        android:spinnerMode="dialog"
-        android:layout_above="@+id/criteria"
+        android:layout_below="@+id/editAge"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="22dp" />
+        android:layout_marginTop="9dp"
+        android:spinnerMode="dialog" />
 
     <Spinner
         android:id="@+id/criteria"
         android:layout_width="230dp"
         android:layout_height="40dp"
-        android:spinnerMode="dialog"
-        android:layout_above="@+id/btnSubmit"
         android:layout_alignLeft="@+id/category"
         android:layout_alignStart="@+id/category"
-        android:layout_marginBottom="40dp" />
+        android:layout_alignTop="@+id/category"
+        android:layout_marginTop="48dp"
+        android:spinnerMode="dialog" />
+
+    <EditText
+        android:id="@+id/editHeight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="92dp"
+        android:ems="8"
+        android:hint="My height in cms???"
+        android:inputType="numberDecimal"
+        android:textColor="@color/colorPrimaryDark" />
+
+    <EditText
+        android:id="@+id/editWeight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editHeight"
+        android:layout_alignStart="@+id/editHeight"
+        android:layout_below="@+id/editHeight"
+        android:layout_marginTop="12dp"
+        android:ems="8"
+        android:hint="My weight in kgs???"
+        android:inputType="numberDecimal"
+        android:textColor="@color/colorPrimaryDark"
+        android:translationY="-9dp" />
+
+    <EditText
+        android:id="@+id/editAge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editWeight"
+        android:layout_alignStart="@+id/editWeight"
+        android:layout_below="@+id/editWeight"
+        android:ems="8"
+        android:hint="My age in years???"
+        android:inputType="number"
+        android:textColor="@color/colorPrimaryDark" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="400dp"
+        android:layout_height="400dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/btnSubmit"
+        android:layout_marginTop="25dp"
+        android:orientation="vertical"
+        android:translationX="0dp"
+        android:translationY="-10dp"
+        android:weightSum="1">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btnSubmit"
+            android:layout_marginBottom="15dp"
+            android:layout_marginEnd="28dp"
+            android:layout_marginRight="28dp"
+            android:layout_marginTop="36dp"
+            android:layout_toLeftOf="@+id/btnSubmit"
+            android:layout_toStartOf="@+id/btnSubmit"
+            android:fontFamily="sans-serif-smallcaps"
+            android:text="RESULT:"
+            android:textAllCaps="false"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@color/colorPrimaryDark" />
+
+        <TextView
+            android:id="@+id/txtResult"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="80dp"
+            android:layout_weight="0.11"
+            android:text=" Your BMI is 0.00.\n You are underweight.Maximim intake of calories daily is 1500 cal."
+            android:textAppearance="@android:style/TextAppearance.Medium"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="14sp" />
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/btnSubmit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="150dp" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="400dp"
-        android:layout_height="200dp"
-        android:layout_marginTop="50dp"
-        android:orientation="vertical"
-        android:layout_alignTop="@+id/btnSubmit"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Result"
-            android:textAppearance="@android:style/TextAppearance.Medium"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/txtResult"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:text=" Your BMI is 0.00.\n You are underweight.\n Maximum intake of calories daily is 1500 cal."
-            android:textAppearance="@android:style/TextAppearance.Medium" />
-
-    </LinearLayout>
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="12dp"
-        android:layout_marginRight="12dp"
-        app:srcCompat="@drawable/height"
-        android:scaleX="1.5"
-        android:scaleY="1.5"
-        android:layout_alignTop="@+id/editHeight"
-        android:layout_toLeftOf="@+id/category"
-        android:layout_toStartOf="@+id/category" />
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/weight"
-        android:scaleX="1.5"
-        android:scaleY="1.5"
-        android:layout_alignTop="@+id/editWeight"
-        android:layout_alignLeft="@+id/imageView"
-        android:layout_alignStart="@+id/imageView" />
-
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:scaleX="1.5"
-        android:scaleY="1.5"
-        app:srcCompat="@drawable/age"
-        android:layout_below="@+id/editWeight"
-        android:layout_alignLeft="@+id/imageView2"
-        android:layout_alignStart="@+id/imageView2" />
+        android:layout_alignEnd="@+id/editAge"
+        android:layout_alignRight="@+id/editAge"
+        android:layout_below="@+id/criteria"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:background="@color/colorPrimaryDark"
+        android:text="Submit"
+        android:textColor="@android:color/background_light" />
 
 
 </RelativeLayout>

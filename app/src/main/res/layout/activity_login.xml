@@ -4,17 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffbb33"
+    android:background="@drawable/slus"
     tools:context="com.example.sarvesh.mycaloriecounter.Login">
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="79dp"
-        android:layout_height="87dp"
+        android:id="@+id/imageView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:srcCompat="@mipmap/login"
-        tools:layout_editor_absoluteX="83dp"
-        tools:layout_editor_absoluteY="37dp"
-        android:layout_toStartOf="@+id/textView" />
+        android:scaleX="2"
+        android:scaleY="2"
+        android:layout_alignBottom="@+id/textView"
+        android:layout_toLeftOf="@+id/textView3"
+        android:layout_toStartOf="@+id/textView3" />
 
     <TextView
         android:id="@+id/textView"
@@ -24,12 +26,12 @@
         android:text="Login"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textColor="@android:color/black"
-        tools:layout_editor_absoluteY="66dp"
         tools:layout_editor_absoluteX="170dp"
-        android:layout_alignBottom="@+id/imageView"
-        android:layout_alignRight="@+id/textView3"
-        android:layout_alignEnd="@+id/textView3"
-        android:layout_marginBottom="11dp" />
+        tools:layout_editor_absoluteY="66dp"
+        android:layout_marginBottom="17dp"
+        android:layout_above="@+id/textView2"
+        android:layout_alignLeft="@+id/btnSubmitLogin"
+        android:layout_alignStart="@+id/btnSubmitLogin" />
 
     <TextView
         android:id="@+id/textView2"
@@ -42,6 +44,7 @@
         android:text="Name:"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textColor="@android:color/black"
+        android:textSize="24sp"
         tools:layout_editor_absoluteX="103dp"
         tools:layout_editor_absoluteY="126dp" />
 
@@ -54,10 +57,12 @@
         android:layout_alignStart="@+id/editTextPassword"
         android:layout_marginBottom="7dp"
         android:ems="10"
+        android:fontFamily="sans-serif"
         android:hint="Enter your name:"
         android:imeOptions="actionNext"
-        android:textAlignment="center"
         android:inputType="textEmailAddress"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         tools:layout_editor_absoluteX="83dp"
         tools:layout_editor_absoluteY="176dp" />
 
@@ -65,15 +70,16 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/editTextPassword"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="17dp"
         android:fontFamily="sans-serif-smallcaps"
         android:text="Password:"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textColor="@android:color/black"
-        tools:layout_editor_absoluteY="235dp"
+        android:textSize="24sp"
         tools:layout_editor_absoluteX="93dp"
-        android:layout_marginBottom="17dp"
-        android:layout_above="@+id/editTextPassword"
-        android:layout_centerHorizontal="true" />
+        tools:layout_editor_absoluteY="235dp" />
 
     <EditText
         android:id="@+id/editTextPassword"
@@ -83,9 +89,10 @@
         android:layout_centerVertical="true"
         android:ems="10"
         android:hint="*****"
-        android:textAlignment="center"
         android:imeOptions="actionDone"
         android:inputType="textPassword"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         tools:layout_editor_absoluteX="99dp"
         tools:layout_editor_absoluteY="289dp" />
 
@@ -96,8 +103,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/editTextPassword"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="23dp"
-        android:background="@color/colorPrimary"
+        android:layout_marginTop="38dp"
+        android:background="@color/colorPrimaryDark"
         android:fontFamily="sans-serif-smallcaps"
         android:text="Submit"
         android:textAlignment="center"
@@ -111,14 +118,15 @@
         android:id="@+id/btnLoginRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editTextPassword"
+        android:layout_below="@+id/btnSubmitLogin"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="104dp"
-        android:background="@color/colorPrimary"
+        android:layout_marginTop="46dp"
+        android:background="@color/colorPrimaryDark"
         android:fontFamily="sans-serif-smallcaps"
         android:text="New user?   SignUp here!"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="@android:color/background_light"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:visibility="visible" />
 </RelativeLayout>

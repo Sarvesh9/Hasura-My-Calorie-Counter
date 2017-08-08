@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_screen2">
+    android:background="#4c4cff">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -21,40 +21,36 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/slide_2_title"
-        android:textColor="@android:color/black"
-        android:textSize="@dimen/slide_title"
-        android:textStyle="bold"
-        android:layout_marginRight="46dp"
-        android:layout_marginEnd="46dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="20dp" />
+        android:layout_alignTop="@+id/linearLayout3"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="Height and Weight"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="@android:color/background_light"
+        android:textSize="36sp" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="66dp"
+        android:fontFamily="sans-serif-smallcaps"
         android:paddingLeft="@dimen/desc_padding"
         android:paddingRight="@dimen/desc_padding"
-        android:text="@string/slide_2_desc"
+        android:text="Give us Height and Weight, Get your Daily Calorie Intake!"
         android:textAlignment="center"
-        android:textColor="@android:color/black"
-        android:textSize="30dp"
+        android:textColor="@android:color/background_light"
+        android:textSize="30sp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginBottom="27dp" />
+        android:layout_alignParentStart="true" />
 
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="360dp"
         android:layout_height="360dp"
         app:srcCompat="@drawable/wtht"
-        android:layout_below="@+id/textView3"
+        android:layout_alignTop="@+id/linearLayout3"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 

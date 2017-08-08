@@ -12,22 +12,29 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".WelcomeActivity">
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
+
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/title_activity_welcome"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".SignUp" />
+        <activity android:name=".Login" />
+        <activity
+            android:name=".PersonalInfo"
+            android:windowSoftInputMode="adjustPan|adjustResize" />
+        <activity android:name=".TotalIntakeView" />
+        <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".MainActivity"
-            android:label="@string/title_activity_welcome"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".SignUp"></activity>
-        <activity android:name=".Login"></activity>
-        <activity
-            android:name=".PersonalInfo"
-            android:windowSoftInputMode="adjustPan|adjustResize"></activity>
-        <activity android:name=".TotalIntakeView"></activity>
     </application>
 
 </manifest>

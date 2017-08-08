@@ -4,123 +4,202 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/slus"
     tools:context="com.example.sarvesh.mycaloriecounter.TotalIntakeView">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="79dp"
-        android:layout_height="87dp"
-        app:srcCompat="@mipmap/login"
-        tools:layout_editor_absoluteX="83dp"
-        tools:layout_editor_absoluteY="37dp"
-        android:layout_toStartOf="@+id/textView" />
+    <Button
+        android:id="@+id/btnAddF"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textViewLunchAmount"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="11dp"
+        android:background="@color/colorPrimaryDark"
+        android:text="Add Food!!!"
+        android:textColor="@android:color/white" />
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="122dp"
-        android:layout_height="60dp"
-        android:fontFamily="sans-serif-smallcaps"
-        android:text="Login"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        android:textColor="@android:color/black"
-        tools:layout_editor_absoluteY="66dp"
-        tools:layout_editor_absoluteX="170dp"
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/editTextName"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="19dp"
+        android:layout_marginTop="33dp"
         android:fontFamily="sans-serif-smallcaps"
-        android:text="Name:"
+        android:text="What I eat in a day???"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textColor="@android:color/black"
-        tools:layout_editor_absoluteX="103dp"
-        tools:layout_editor_absoluteY="126dp" />
-
-    <EditText
-        android:id="@+id/editTextName"
-        android:layout_width="197dp"
-        android:layout_height="41dp"
-        android:ems="10"
-        android:fontFamily="sans-serif"
-        android:hint="Enter your name:"
-        android:imeOptions="actionNext"
-        android:inputType="textEmailAddress"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        tools:layout_editor_absoluteX="83dp"
-        tools:layout_editor_absoluteY="176dp"
-        android:layout_above="@+id/textView3"
-        android:layout_alignLeft="@+id/editTextPassword"
-        android:layout_alignStart="@+id/editTextPassword"
-        android:layout_marginBottom="7dp" />
+        android:textSize="30sp" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/textViewBreakfast"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView12"
+        android:layout_marginLeft="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="90dp"
         android:fontFamily="sans-serif-smallcaps"
-        android:text="Password:"
+        android:text="Breakfast"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textColor="@android:color/black"
-        tools:layout_editor_absoluteY="235dp"
-        tools:layout_editor_absoluteX="93dp"
-        android:layout_marginBottom="17dp"
-        android:layout_above="@+id/editTextPassword"
-        android:layout_centerHorizontal="true" />
-
-    <EditText
-        android:id="@+id/editTextPassword"
-        android:layout_width="187dp"
-        android:layout_height="38dp"
-        android:ems="10"
-        android:hint="*****"
-        android:inputType="textPassword"
-        android:imeOptions="actionDone"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        tools:layout_editor_absoluteX="99dp"
-        tools:layout_editor_absoluteY="289dp"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
-
-    <Button
-        android:id="@+id/btnSubmitLogin"
-        style="@style/Widget.AppCompat.Button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/editTextPassword"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="23dp"
-        android:background="@color/colorPrimary"
-        android:fontFamily="sans-serif-smallcaps"
-        android:text="Submit"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textColor="@android:color/background_light"
-        android:textSize="24sp"
-        tools:layout_editor_absoluteX="148dp"
-        tools:layout_editor_absoluteY="359dp" />
-
-    <Button
-        android:id="@+id/btnLoginRegister"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/editTextPassword"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="77dp"
-        android:background="@color/colorPrimary"
-        android:fontFamily="sans-serif-smallcaps"
-        android:text="New user?SignUp here!"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textColor="@android:color/background_light"
         android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/textViewBreakfastAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textViewDinner"
+        android:layout_alignBottom="@+id/textViewDinner"
+        android:layout_alignLeft="@+id/textViewSnacksAmount"
+        android:layout_alignStart="@+id/textViewSnacksAmount"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="0.0 cal"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="@android:color/black"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/textViewLunch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/textViewBreakfast"
+        android:layout_alignRight="@+id/textViewBreakfast"
+        android:layout_below="@+id/textViewBreakfast"
+        android:layout_marginTop="26dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="Lunch"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="@android:color/black"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/textViewDinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textViewSnacks"
+        android:layout_alignStart="@+id/textViewSnacks"
+        android:layout_below="@+id/textViewSnacks"
+        android:layout_marginTop="29dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="Dinner"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="@android:color/black"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/textViewSnacks"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/textViewLunch"
+        android:layout_alignRight="@+id/textViewLunch"
+        android:layout_below="@+id/textViewLunch"
+        android:layout_marginTop="28dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="Snacks"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="@android:color/black"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/textViewLunchAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textViewBreakfast"
+        android:layout_alignBottom="@+id/textViewBreakfast"
+        android:layout_alignEnd="@+id/textView12"
+        android:layout_alignRight="@+id/textView12"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="0.0 cal"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="@android:color/black"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/textViewDinnerAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textViewSnacks"
+        android:layout_alignLeft="@+id/textViewSnacksAmount"
+        android:layout_alignStart="@+id/textViewSnacksAmount"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="0.0 cal"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="@android:color/black"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/textViewSnacksAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textViewSnacks"
+        android:layout_alignBottom="@+id/textViewSnacks"
+        android:layout_alignLeft="@+id/textViewLunchAmount"
+        android:layout_alignStart="@+id/textViewLunchAmount"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="0.0 cal"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="@android:color/black"
+        android:textSize="24sp" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="400dp"
+        android:layout_height="400dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:orientation="vertical"
+        android:translationX="0dp"
+        android:translationY="-10dp"
+        android:weightSum="1"
+        android:layout_below="@+id/button">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btnSubmit"
+            android:layout_marginBottom="15dp"
+            android:layout_marginEnd="28dp"
+            android:layout_marginRight="28dp"
+            android:layout_marginTop="36dp"
+            android:layout_toLeftOf="@+id/btnSubmit"
+            android:layout_toStartOf="@+id/btnSubmit"
+            android:fontFamily="sans-serif-smallcaps"
+            android:text="RESULT:"
+            android:textAllCaps="false"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@color/colorPrimaryDark" />
+
+        <TextView
+            android:id="@+id/txtAddF"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="80dp"
+            android:layout_weight="0.14"
+            android:text=" Your intake of calories is 0.0.\n You are underweight.Maximim intake of calories daily is 1500 cal."
+            android:textAppearance="@android:style/TextAppearance.Medium"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textViewDinner"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_toEndOf="@+id/textViewSnacks"
+        android:layout_toRightOf="@+id/textViewSnacks"
+        android:background="@color/colorPrimaryDark"
+        android:text="SUBMIT"
+        android:textColor="@android:color/white" />
 
 </RelativeLayout>
