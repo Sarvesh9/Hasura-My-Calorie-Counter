@@ -13,8 +13,21 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import io.hasura.sdk.Callback;
+import io.hasura.sdk.Hasura;
+import io.hasura.sdk.HasuraClient;
+import io.hasura.sdk.HasuraUser;
+import io.hasura.sdk.ProjectConfig;
+import io.hasura.sdk.exception.HasuraException;
+import io.hasura.sdk.exception.HasuraInitException;
+
 
 public class PersonalInfo extends AppCompatActivity implements OnItemSelectedListener {
 
@@ -23,6 +36,8 @@ public class PersonalInfo extends AppCompatActivity implements OnItemSelectedLis
     private EditText age;
     private Button btnSubmit;
     private TextView txtResult;
+    HasuraUser user;
+    HasuraClient client;
     private LinearLayout linearLayout;
 
     @Override
@@ -36,6 +51,18 @@ public class PersonalInfo extends AppCompatActivity implements OnItemSelectedLis
         btnSubmit = (Button) findViewById(R.id.btnSubmit);
         linearLayout = (LinearLayout) findViewById(R.id.linearLayout);
         linearLayout.setVisibility(LinearLayout.GONE);
+
+        try {
+            Hasura.setProjectConfig(new ProjectConfig.Builder()
+                    .setCustomBaseDomain("newsman88.hasura-app.io")
+//                    .enableOverHttp()
+                    .build())
+                    .initialise(this);
+        } catch (HasuraInitException e) {
+            e.printStackTrace();
+        }
+        client = Hasura.getClient();
+        user = client.getUser();
 
 // Spinner element
         final Spinner spinner1 = (Spinner) findViewById(R.id.category);
@@ -142,6 +169,45 @@ public class PersonalInfo extends AppCompatActivity implements OnItemSelectedLis
                 String category = BMICalculate(bmi);
                 linearLayout.setVisibility(LinearLayout.VISIBLE);
                 txtResult.setText("Your BMI is " + bmi + ". You are " + category + " .Maximum intake of calories daily is " + bmr + " cal.");
+
+                try{
+
+                    JSONObject nameJSON = new JSONObject();
+                    nameJSON.put("user_id", user.getId());
+                    nameJSON.put("height",hgt);
+                    nameJSON.put("weight",wgt);
+                    nameJSON.put("bmi",bmi);
+                    nameJSON.put("req_cal",bmr);
+
+                    JSONArray colsList = new JSONArray();
+                    colsList.put(nameJSON);
+
+                    JSONObject args = new JSONObject();
+                    args.put("table", "Personal_info");
+                    args.put("objects", colsList);
+
+                    JSONObject insertUserJSON = new JSONObject();
+                    insertUserJSON.put("type", "insert");
+                    insertUserJSON.put("args", args);
+
+                    client.useDataService()
+                            .setRequestBody(insertUserJSON)
+                            .expectResponseType(InsertPersonalInfoResult.class)
+                            .enqueue(new Callback<InsertPersonalInfoResult, HasuraException>() {
+                                @Override
+                                public void onSuccess(InsertPersonalInfoResult insertPersonalInfoResult) {
+                                    Toast.makeText(getApplicationContext(), "Info added", Toast.LENGTH_SHORT).show();
+                                }
+
+                                @Override
+                                public void onFailure(HasuraException e) {
+                                    Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                }
+                catch (JSONException e){
+                    Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

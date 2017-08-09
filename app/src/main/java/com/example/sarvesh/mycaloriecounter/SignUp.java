@@ -128,6 +128,7 @@ public class SignUp extends AppCompatActivity implements OnItemSelectedListener 
                 user.setUsername(username);
                 user.setPassword(password);
                 user.setEmail(email);
+                user.setMobile("8861503583");
                 user.signUp(new SignUpResponseListener() {
                     @Override
                     public void onSuccessAwaitingVerification(HasuraUser user) {
@@ -175,7 +176,7 @@ public class SignUp extends AppCompatActivity implements OnItemSelectedListener 
                     }
 
                         Toast.makeText(getApplicationContext(), "Thank You! ", Toast.LENGTH_SHORT).show();
-                        Intent myIntent = new Intent(SignUp.this, TotalIntakeView.class);
+                        Intent myIntent = new Intent(SignUp.this, PersonalInfo.class);
                         startActivity(myIntent);
                     }
 
