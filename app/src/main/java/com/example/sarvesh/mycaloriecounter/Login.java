@@ -40,7 +40,7 @@ public class Login extends AppCompatActivity {
         //init
         try {
             Hasura.setProjectConfig(new ProjectConfig.Builder()
-                    .setCustomBaseDomain("newsman88.hasura-app.io")
+                    .setCustomBaseDomain("becalmed98.hasura-app.io")
                     //.enableOverHttp()
                     .build())
                     .initialise(this);

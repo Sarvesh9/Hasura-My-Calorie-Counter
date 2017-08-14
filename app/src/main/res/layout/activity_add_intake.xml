@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/slus"
+    tools:context="com.example.sarvesh.mycaloriecounter.AddIntake">
+
+    <TextView
+        android:id="@+id/txtDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="00-00-0000"
+        android:textSize="24sp"
+        android:layout_below="@+id/textView8"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp" />
+
+    <Button
+        android:id="@+id/btnIntake"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editTextQuantity"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="41dp"
+        android:background="@color/colorPrimaryDark"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="OK"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="?android:attr/colorBackground"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="106dp"
+        android:layout_marginStart="106dp"
+        android:layout_marginTop="26dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="My Intake"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="@android:color/black"
+        android:textSize="36sp" />
+
+    <TextView
+        android:id="@+id/textViewIntakeFood"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="45dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="Food:"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="@android:color/black"
+        android:textSize="24sp"
+        android:layout_marginLeft="22dp"
+        android:layout_marginStart="22dp"
+        android:layout_below="@+id/mealType"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:id="@+id/editTextFood"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Enter the food"
+        android:inputType="textPersonName"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:layout_alignBaseline="@+id/textViewIntakeFood"
+        android:layout_alignBottom="@+id/textViewIntakeFood"
+        android:layout_toRightOf="@+id/textViewIntakeFood"
+        android:layout_toEndOf="@+id/textViewIntakeFood"
+        android:layout_marginLeft="22dp"
+        android:layout_marginStart="22dp" />
+
+    <TextView
+        android:id="@+id/textViewAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="Quantity:"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="@android:color/black"
+        android:textSize="24sp"
+        android:layout_below="@+id/editTextFood"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="30dp" />
+
+    <EditText
+        android:id="@+id/editTextQuantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Enter the amount"
+        android:inputType="number"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:layout_alignBaseline="@+id/textViewAmount"
+        android:layout_alignBottom="@+id/textViewAmount"
+        android:layout_alignLeft="@+id/editTextFood"
+        android:layout_alignStart="@+id/editTextFood" />
+
+    <MultiAutoCompleteTextView
+        android:id="@+id/mealType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="26dp"
+        android:hint="Meal Type eg. Breakfast"
+        android:lineSpacingExtra="24sp"
+        android:textSize="24sp"
+        android:layout_below="@+id/txtDate"
+        android:layout_centerHorizontal="true" />
+
+
+</RelativeLayout>

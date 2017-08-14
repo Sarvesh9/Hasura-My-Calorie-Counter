@@ -11,12 +11,14 @@
         android:id="@+id/btnAddFood"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/textViewLunchAmount"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="11dp"
         android:background="@color/colorPrimaryDark"
         android:text="Add Food!!!"
-        android:textColor="@android:color/white" />
+        android:textColor="@android:color/white"
+        android:layout_above="@+id/linearLayout"
+        android:layout_alignRight="@+id/dinnerCal"
+        android:layout_alignEnd="@+id/dinnerCal"
+        android:layout_marginRight="37dp"
+        android:layout_marginEnd="37dp" />
 
     <TextView
         android:id="@+id/textView12"
@@ -26,7 +28,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="33dp"
         android:fontFamily="sans-serif-smallcaps"
-        android:text="What I eat in a day???"
+        android:text="My Today's Food Quota"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textColor="@android:color/black"
         android:textSize="30sp" />
@@ -48,20 +50,6 @@
         android:textSize="24sp" />
 
     <TextView
-        android:id="@+id/textViewBreakfastAmount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textViewDinner"
-        android:layout_alignBottom="@+id/textViewDinner"
-        android:layout_alignLeft="@+id/textViewSnacksAmount"
-        android:layout_alignStart="@+id/textViewSnacksAmount"
-        android:fontFamily="sans-serif-smallcaps"
-        android:text="0.0 cal"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        android:textColor="@android:color/black"
-        android:textSize="24sp" />
-
-    <TextView
         android:id="@+id/textViewLunch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -73,7 +61,9 @@
         android:text="Lunch"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textColor="@android:color/black"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:layout_alignLeft="@+id/textViewBreakfast"
+        android:layout_alignStart="@+id/textViewBreakfast" />
 
     <TextView
         android:id="@+id/textViewDinner"
@@ -93,53 +83,67 @@
         android:id="@+id/textViewSnacks"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/textViewLunch"
-        android:layout_alignRight="@+id/textViewLunch"
-        android:layout_below="@+id/textViewLunch"
-        android:layout_marginTop="28dp"
         android:fontFamily="sans-serif-smallcaps"
         android:text="Snacks"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textColor="@android:color/black"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/textViewLunch"
+        android:layout_alignStart="@+id/textViewLunch" />
 
     <TextView
-        android:id="@+id/textViewLunchAmount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/breakfastCal"
+        android:layout_width="90dp"
+        android:layout_height="30dp"
         android:layout_alignBaseline="@+id/textViewBreakfast"
         android:layout_alignBottom="@+id/textViewBreakfast"
         android:layout_alignEnd="@+id/textView12"
         android:layout_alignRight="@+id/textView12"
         android:fontFamily="sans-serif-smallcaps"
-        android:text="0.0 cal"
+        android:text="0.0 "
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textColor="@android:color/black"
         android:textSize="24sp" />
 
     <TextView
-        android:id="@+id/textViewDinnerAmount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/textViewSnacks"
-        android:layout_alignLeft="@+id/textViewSnacksAmount"
-        android:layout_alignStart="@+id/textViewSnacksAmount"
+        android:id="@+id/lunchCal"
+        android:layout_width="90dp"
+        android:layout_height="30dp"
+        android:layout_alignBaseline="@+id/textViewLunch"
+        android:layout_alignBottom="@+id/textViewLunch"
+        android:layout_alignLeft="@+id/snacksCal"
+        android:layout_alignStart="@+id/snacksCal"
         android:fontFamily="sans-serif-smallcaps"
-        android:text="0.0 cal"
+        android:text="0.0"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textColor="@android:color/black"
         android:textSize="24sp" />
 
     <TextView
-        android:id="@+id/textViewSnacksAmount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/snacksCal"
+        android:layout_width="90dp"
+        android:layout_height="30dp"
         android:layout_alignBaseline="@+id/textViewSnacks"
         android:layout_alignBottom="@+id/textViewSnacks"
-        android:layout_alignLeft="@+id/textViewLunchAmount"
-        android:layout_alignStart="@+id/textViewLunchAmount"
+        android:layout_alignLeft="@+id/breakfastCal"
+        android:layout_alignStart="@+id/breakfastCal"
         android:fontFamily="sans-serif-smallcaps"
-        android:text="0.0 cal"
+        android:text="0.0"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="@android:color/black"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/dinnerCal"
+        android:layout_width="90dp"
+        android:layout_height="30dp"
+        android:layout_alignBaseline="@+id/textViewDinner"
+        android:layout_alignBottom="@+id/textViewDinner"
+        android:layout_alignLeft="@+id/snacksCal"
+        android:layout_alignStart="@+id/snacksCal"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="0.0"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textColor="@android:color/black"
         android:textSize="24sp" />
@@ -154,7 +158,7 @@
         android:translationX="0dp"
         android:translationY="-10dp"
         android:weightSum="1"
-        android:layout_below="@+id/button">
+        android:layout_below="@+id/btnSubmit">
 
         <TextView
             android:id="@+id/textView2"
@@ -190,16 +194,27 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnSubmit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textViewDinner"
-        android:layout_marginLeft="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_toEndOf="@+id/textViewSnacks"
-        android:layout_toRightOf="@+id/textViewSnacks"
         android:background="@color/colorPrimaryDark"
         android:text="SUBMIT"
-        android:textColor="@android:color/white" />
+        android:textColor="@android:color/white"
+        android:layout_below="@+id/textViewDinner"
+        android:layout_alignLeft="@+id/textViewLunch"
+        android:layout_alignStart="@+id/textViewLunch"
+        android:layout_marginLeft="41dp"
+        android:layout_marginStart="41dp"
+        android:layout_marginTop="8dp" />
+
+    <TextView
+        android:id="@+id/txtDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="00-00-0000"
+        android:textSize="24sp"
+        android:layout_marginTop="25dp"
+        android:layout_below="@+id/textView12"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
