@@ -84,11 +84,10 @@
         android:id="@+id/imgIntake"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_alignParentEnd="true"
+        app:srcCompat="@drawable/blackarrow"
+        android:layout_alignBottom="@+id/textView13"
         android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="12dp"
-        app:srcCompat="@drawable/blackarrow" />
+        android:layout_alignParentEnd="true" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -158,8 +157,10 @@
         android:textColor="@android:color/black"
         android:textSize="14sp"
         android:text="@string/personalinfo"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentTop="true" />
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="18dp" />
 
 
 </RelativeLayout>

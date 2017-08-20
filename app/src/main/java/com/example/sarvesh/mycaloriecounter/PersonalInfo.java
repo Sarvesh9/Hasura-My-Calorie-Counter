@@ -216,7 +216,6 @@ public class PersonalInfo extends AppCompatActivity implements OnItemSelectedLis
                 }
             }
         });
-        Log.i("Auth-User-id",user.getId().toString());
         imgIntake.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -306,7 +305,6 @@ public class PersonalInfo extends AppCompatActivity implements OnItemSelectedLis
             JSONObject selectIntakeQuery = new JSONObject();
             selectIntakeQuery.put("type", "select");
             selectIntakeQuery.put("args", args);
-            Log.i("IdRecord", selectIntakeQuery.toString());
             client.useDataService()
                     .setRequestBody(selectIntakeQuery)
                     .expectResponseTypeArrayOf(IdRecord.class)

@@ -65,7 +65,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
-    <EditText
+    <MultiAutoCompleteTextView
         android:id="@+id/editTextFood"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

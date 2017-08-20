@@ -42,7 +42,6 @@ public class TotalIntakeView extends AppCompatActivity {
     private Integer result;
     private ImageView logout;
     private String todaydate;
-    private String TodayDate;
     private TextView Date;
     private Button btnaddFood;
     private Button btnSubmit;
@@ -98,9 +97,6 @@ public class TotalIntakeView extends AppCompatActivity {
 
         todaydate = dd + "-" + (mm+1) + "-" + yy;
 
-        TodayDate = todaydate;
-        Log.i("Date",todaydate);
-
         Date.setText(new StringBuilder()
                 // Month is 0 based, just add 1
                 .append(cal.get(Calendar.DAY_OF_MONTH)).append("-").append(cal.get(Calendar.MONTH) + 1).append("-")
@@ -114,11 +110,6 @@ public class TotalIntakeView extends AppCompatActivity {
         lunchfetchCaloriesDB();
         snackfetchCaloriesDB();
         dinnerfetchCaloriesDB();
-
-        Log.i("Brkcal","value = " + foodCalorie[0]);
-        Log.i("Lunchcal","value = " + foodCalorie[1]);
-        Log.i("Snackcal","value = " + foodCalorie[2]);
-        Log.i("Dinnercal","value = " + foodCalorie[3]);
 
         btnaddFood.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -191,7 +182,6 @@ public class TotalIntakeView extends AppCompatActivity {
             JSONObject selectCalorieJSON = new JSONObject();
             selectCalorieJSON.put("type", "select");
             selectCalorieJSON.put("args", args);
-            Log.i("ResponseRecord", selectCalorieJSON.toString());
             client.useDataService()
                     .setRequestBody(selectCalorieJSON)
                     .expectResponseTypeArrayOf(RequiredCalorieResponse.class)
@@ -233,7 +223,6 @@ public class TotalIntakeView extends AppCompatActivity {
             JSONObject selectIntakeJSON = new JSONObject();
             selectIntakeJSON.put("type", "select");
             selectIntakeJSON.put("args", args);
-            Log.i("ResponseRecord", selectIntakeJSON.toString());
             client.useDataService()
                     .setRequestBody(selectIntakeJSON)
                     .expectResponseTypeArrayOf(CalorieResponse.class)
@@ -243,7 +232,6 @@ public class TotalIntakeView extends AppCompatActivity {
                             for (CalorieResponse record:response) {
                                 Integer cal = record.getCalories();
                                 brkcal = brkcal + cal;
-                                Log.i("Breakfast", "value =" + brkcal);
                             }
                             foodCalorie[0]= brkcal;
                             breakfast.setText(Integer.toString(foodCalorie[0]));
@@ -278,7 +266,6 @@ public class TotalIntakeView extends AppCompatActivity {
             JSONObject selectIntakeJSON = new JSONObject();
             selectIntakeJSON.put("type", "select");
             selectIntakeJSON.put("args", args);
-            Log.i("ResponseRecord", selectIntakeJSON.toString());
             client.useDataService()
                     .setRequestBody(selectIntakeJSON)
                     .expectResponseTypeArrayOf(CalorieResponse.class)
@@ -321,7 +308,6 @@ public class TotalIntakeView extends AppCompatActivity {
             JSONObject selectIntakeJSON = new JSONObject();
             selectIntakeJSON.put("type", "select");
             selectIntakeJSON.put("args", args);
-            Log.i("ResponseRecord", selectIntakeJSON.toString());
             client.useDataService()
                     .setRequestBody(selectIntakeJSON)
                     .expectResponseTypeArrayOf(CalorieResponse.class)
@@ -364,7 +350,6 @@ public class TotalIntakeView extends AppCompatActivity {
             JSONObject selectIntakeJSON = new JSONObject();
             selectIntakeJSON.put("type", "select");
             selectIntakeJSON.put("args", args);
-            Log.i("ResponseRecord", selectIntakeJSON.toString());
             client.useDataService()
                     .setRequestBody(selectIntakeJSON)
                     .expectResponseTypeArrayOf(CalorieResponse.class)

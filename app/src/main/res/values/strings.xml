@@ -28,7 +28,7 @@
     <string name="passworderror">Enter atleast 8 character Password</string>
     <string name="loginpassworderror">Enter your Password</string>
 
-    <string name="personalinfo">After filling the form once, proceed to the next page.</string>
+    <string name="personalinfo"><b>Note:</b> After filling the form once, proceed to the next page.</string>
     <string name="personalinforesult"> Your BMI is 0.00.\n You are underweight.Maximim intake of calories daily is 1500 cal.</string>
     <string name="result">RESULT:</string>
     <string name="agehint">My age in years???</string>

@@ -33,9 +33,11 @@ public class AddIntake extends AppCompatActivity {
     private TextView food;
     private TextView quantity;
     private String mealtype;
+    private String fooditem;
     private Integer totalCal;
     private String todaydate;
     private MultiAutoCompleteTextView mt;
+    private MultiAutoCompleteTextView mt2;
 
     HasuraUser user;
     HasuraClient client;
@@ -59,7 +61,6 @@ public class AddIntake extends AppCompatActivity {
 
         btnIntake = (Button) findViewById(R.id.btnIntake);
         Date = (TextView) findViewById(R.id.txtDate);
-        food = (TextView) findViewById(R.id.editTextFood);
         quantity = (TextView) findViewById(R.id.editTextQuantity);
         final Calendar cal = Calendar.getInstance();
         Integer dd = cal.get(Calendar.DAY_OF_MONTH);
@@ -68,38 +69,41 @@ public class AddIntake extends AppCompatActivity {
         // set current date into TextView
 
         todaydate = dd + "-" + (mm+1) + "-" + yy;
-        Log.i("Date",todaydate);
 
         Date.setText(new StringBuilder()
                 // Month is 0 based, just add 1
                 .append(cal.get(Calendar.DAY_OF_MONTH)).append("-").append(cal.get(Calendar.MONTH) + 1).append("-")
                 .append(cal.get(Calendar.YEAR)));
-        final MultiAutoCompleteTextView mt = (MultiAutoCompleteTextView)
-                findViewById(R.id.mealType);
+        final MultiAutoCompleteTextView mt = (MultiAutoCompleteTextView) findViewById(R.id.mealType);
+        final MultiAutoCompleteTextView mt2 = (MultiAutoCompleteTextView) findViewById(R.id.editTextFood);
         mt.setTokenizer(new MultiAutoCompleteTextView.CommaTokenizer());
 
         ArrayAdapter<String> adp = new ArrayAdapter<String>(this,
                 android.R.layout.simple_dropdown_item_1line, MEALTYPE);
-
+        ArrayAdapter<String> adp2 = new ArrayAdapter<String>(this,
+                android.R.layout.simple_dropdown_item_1line, FOODITEM);
         mt.setThreshold(1);
         mt.setAdapter(adp);
         mt.setTokenizer(new SpaceTokenizer());
+        mt2.setThreshold(1);
+        mt2.setAdapter(adp2);
+        mt2.setTokenizer(new SpaceTokenizer());
 
         btnIntake.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                fetchCaloriesFromDB();
                 //validation
                 // meal type is stored in mealtype
                 mealtype = mt.getEditableText().toString();
+                fooditem = mt2.getEditableText().toString();
+                fetchCaloriesFromDB();
                 if(mealtype.equals("")){
                     Toast.makeText(AddIntake.this,"Please enter a meal type.",Toast.LENGTH_SHORT).show();
                     mt.requestFocus();
                     return;
                 }
-                if (food.getText().length() == 0) {
+                if (fooditem.equals("")) {
                     Toast.makeText(AddIntake.this, "Please enter the food item.", Toast.LENGTH_LONG).show();
-                    food.setText("");
-                    food.requestFocus();
+                    mt2.requestFocus();
                     return;
                 }
                 if (quantity.getText().length() == 0) {
@@ -128,7 +132,6 @@ public class AddIntake extends AppCompatActivity {
             JSONObject selectIntakeQuery = new JSONObject();
             selectIntakeQuery.put("type", "select");
             selectIntakeQuery.put("args", args);
-            Log.i("ResponseRecord", selectIntakeQuery.toString());
             client.useDataService()
                     .setRequestBody(selectIntakeQuery)
                     .expectResponseTypeArrayOf(IntakeRecord.class)
@@ -138,13 +141,10 @@ public class AddIntake extends AppCompatActivity {
                             for (IntakeRecord record:response) {
                                 String myfood =record.getFooditem();
                                 Integer mycal = record.getCalories();
-                                Log.i("Food",food.getEditableText().toString());
-                                Log.i("Food name",myfood);
-                                Log.i("Calories","Value = " + mycal);
-                                if(myfood.equalsIgnoreCase(food.getEditableText().toString())){
+                                if(myfood.equalsIgnoreCase(fooditem)){
                                     Integer quant = Integer.parseInt(quantity.getText().toString());
                                     totalCal =  mycal * quant;
-                                    Toast.makeText(AddIntake.this,"Selected Food Item : " + food.getText().toString() + "\n Calorie Count : " + totalCal,Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(AddIntake.this,"Selected Food Item : " + fooditem + "\n Calorie Count : " + totalCal,Toast.LENGTH_SHORT).show();
                                     storeCalorie();
                                     Intent myIntent = new Intent(AddIntake.this, TotalIntakeView.class);
                                     startActivity(myIntent);
@@ -152,7 +152,7 @@ public class AddIntake extends AppCompatActivity {
                                 }
                             }
                             Toast.makeText(AddIntake.this,"Sorry this food item is not present in our Database.",Toast.LENGTH_SHORT).show();
-                            food.setText("");
+                            mt2.setText("");
                             quantity.setText("");
                             mt.setText("");
                             mt.requestFocus();
@@ -175,7 +175,7 @@ public class AddIntake extends AppCompatActivity {
             Integer quant = Integer.parseInt(quantity.getText().toString());
             JSONObject nameJSON = new JSONObject();
             nameJSON.put("user_id", user.getId());
-            nameJSON.put("food_item",food.getEditableText().toString());
+            nameJSON.put("food_item",fooditem.toString());
             nameJSON.put("calories",totalCal);
             nameJSON.put("date",todaydate.toString());
             nameJSON.put("quantity",quant);
@@ -191,7 +191,6 @@ public class AddIntake extends AppCompatActivity {
             JSONObject insertUserJSON = new JSONObject();
             insertUserJSON.put("type", "insert");
             insertUserJSON.put("args", args);
-            Log.i("ResponseRecord", insertUserJSON.toString());
             client.useDataService()
                     .setRequestBody(insertUserJSON)
                     .expectResponseType(InsertIntake.class)
@@ -214,5 +213,12 @@ public class AddIntake extends AppCompatActivity {
 
     private final String[] MEALTYPE = new String[] {
             "Breakfast", "Lunch", "Snacks", "Dinner"
+    };
+    private final String[] FOODITEM = new String[] {
+            "Tea", "Coffee", "Fruit Juice", "Biscuit", "Fruit", "Bread with butter", "Egg boiled", "Egg omelette", "Idli",
+            "Dosa", "Samosa", "Vadapav", "Upma", "Poha", "Mixed Dried Fruits", "Maggie", "Paratha", "Diet chiwda", "Wafers",
+            "Chinese noodles", "Rice", "Rice fried", "Nan", "Dal", "Curd", "Vegetable curry", "Chicken curry", "Mutton curry",
+            "Fish curry", "Potato sabji", "Brinjal bharta", "Brinjal sabji", "Sev tomato sabji", "Bhendi sabji", "Salad",
+            "Kabab", "Chapati", "Milk with sugar", "Milk"
     };
 }
