@@ -1,13 +1,16 @@
 package com.example.sarvesh.mycaloriecounter;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -36,9 +39,11 @@ public class PersonalInfo extends AppCompatActivity implements OnItemSelectedLis
     private EditText age;
     private Button btnSubmit;
     private TextView txtResult;
+    private ImageView imgIntake;
     HasuraUser user;
     HasuraClient client;
     private LinearLayout linearLayout;
+    ArrayList<Integer> userid = new ArrayList<Integer>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +54,7 @@ public class PersonalInfo extends AppCompatActivity implements OnItemSelectedLis
         age = (EditText) findViewById(R.id.editAge);
         txtResult = (TextView) findViewById(R.id.txtResult);
         btnSubmit = (Button) findViewById(R.id.btnSubmit);
+        imgIntake = (ImageView) findViewById(R.id.imgIntake);
         linearLayout = (LinearLayout) findViewById(R.id.linearLayout);
         linearLayout.setVisibility(LinearLayout.GONE);
 
@@ -64,7 +70,7 @@ public class PersonalInfo extends AppCompatActivity implements OnItemSelectedLis
         client = Hasura.getClient();
         user = client.getUser();
 
-// Spinner element
+        // Spinner element
         final Spinner spinner1 = (Spinner) findViewById(R.id.category);
         final Spinner spinner2 = (Spinner) findViewById(R.id.criteria);
 
@@ -210,16 +216,19 @@ public class PersonalInfo extends AppCompatActivity implements OnItemSelectedLis
                 }
             }
         });
+        Log.i("Auth-User-id",user.getId().toString());
+        imgIntake.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                fetchUserId();
+            }
+        });
     }
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         // On selecting a spinner item
         String item = parent.getItemAtPosition(position).toString();
 
-        // Showing selected spinner item
-        if (!item.equals("Select Category") || (!item.equals("Select Criteria"))){
-            Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
-        }
     }
 
     public void onNothingSelected(AdapterView<?> arg0) {
@@ -283,6 +292,45 @@ public class PersonalInfo extends AppCompatActivity implements OnItemSelectedLis
         }
         else{
             return(1.9);
+        }
+    }
+    private void fetchUserId(){
+        try {
+            JSONArray columnsArray = new JSONArray();
+            columnsArray.put("user_id");
+
+            JSONObject args = new JSONObject();
+            args.put("table", "Personal_info");
+            args.put("columns",columnsArray);
+
+            JSONObject selectIntakeQuery = new JSONObject();
+            selectIntakeQuery.put("type", "select");
+            selectIntakeQuery.put("args", args);
+            Log.i("IdRecord", selectIntakeQuery.toString());
+            client.useDataService()
+                    .setRequestBody(selectIntakeQuery)
+                    .expectResponseTypeArrayOf(IdRecord.class)
+                    .enqueue(new Callback<List<IdRecord>, HasuraException>() {
+                        @Override
+                        public void onSuccess(List<IdRecord> response) {
+                            for (IdRecord record:response) {
+                                Integer uid =record.getUser_id();
+                                if(uid == user.getId()){
+                                    Intent myIntent = new Intent(PersonalInfo.this, TotalIntakeView.class);
+                                    startActivity(myIntent);
+                                    return;
+                                }
+                            }
+                            Toast.makeText(PersonalInfo.this,"Please fill the Personal Info form before proceeding to the next screen.",Toast.LENGTH_SHORT).show();
+                        }
+
+                        @Override
+                        public void onFailure(HasuraException e) {
+                            Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+        } catch (JSONException e) {
+            Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_SHORT).show();
         }
     }
 }

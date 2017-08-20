@@ -7,27 +7,27 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class IntakeRecord {
-    @SerializedName("Item")
-     String Item;
+    @SerializedName("fooditem")
+     String fooditem;
 
     @SerializedName("calories")
     Integer calories;
 
-    public IntakeRecord(String Item,Integer calories){
-        this.Item = Item;
+    public IntakeRecord(String fooditem,Integer calories){
+        this.fooditem = fooditem;
         this.calories = calories;
     }
 
-    public void setItem(String Item) {
-        this.Item = Item;
+    public void setFooditem(String fooditem) {
+        this.fooditem = fooditem;
     }
 
     public void setCalories(Integer calories) {
         this.calories = calories;
     }
 
-    public String getItem() {
-        return Item;
+    public String getFooditem() {
+        return fooditem;
     }
 
     public Integer getCalories() {

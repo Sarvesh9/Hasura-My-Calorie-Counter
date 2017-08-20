@@ -99,11 +99,6 @@ public class SignUp extends AppCompatActivity implements OnItemSelectedListener 
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         // On selecting a spinner item
         String item = parent.getItemAtPosition(position).toString();
-
-        // Showing selected spinner item
-        if (!item.equals("Select Gender")){
-            Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
-        }
     }
 
     public void onNothingSelected(AdapterView<?> arg0) {
@@ -128,7 +123,6 @@ public class SignUp extends AppCompatActivity implements OnItemSelectedListener 
                 user.setUsername(username);
                 user.setPassword(password);
                 user.setEmail(email);
-                user.setMobile("8861503583");
                 user.signUp(new SignUpResponseListener() {
                     @Override
                     public void onSuccessAwaitingVerification(HasuraUser user) {
@@ -176,7 +170,7 @@ public class SignUp extends AppCompatActivity implements OnItemSelectedListener 
                     }
 
                         Toast.makeText(getApplicationContext(), "Thank You! ", Toast.LENGTH_SHORT).show();
-                        Intent myIntent = new Intent(SignUp.this, PersonalInfo.class);
+                        Intent myIntent = new Intent(SignUp.this, Login.class);
                         startActivity(myIntent);
                     }
 

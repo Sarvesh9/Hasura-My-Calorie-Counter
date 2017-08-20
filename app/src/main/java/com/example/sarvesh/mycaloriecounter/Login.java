@@ -64,7 +64,7 @@ public class Login extends AppCompatActivity {
         });
         awesomeValidation.addValidation(this, R.id.editTextName, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.nameerror);
         String regexPassword = ".{8,}";
-        awesomeValidation.addValidation(this, R.id.editTextPassword,regexPassword, R.string.passworderror);
+        awesomeValidation.addValidation(this, R.id.editTextPassword,regexPassword, R.string.loginpassworderror);
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -84,7 +84,7 @@ public class Login extends AppCompatActivity {
                 public void onSuccess(String message) {
                     //Now Hasura.getClient().getCurrentUser() will have this user
                     Toast.makeText(Login.this, "Logged in", Toast.LENGTH_SHORT).show();
-                    Intent myIntent = new Intent(Login.this, TotalIntakeView.class);
+                    Intent myIntent = new Intent(Login.this, PersonalInfo.class);
                     startActivity(myIntent);
                 }
 

@@ -19,9 +19,9 @@
         android:layout_alignStart="@+id/category"
         android:layout_marginTop="43dp"
         android:fontFamily="sans-serif-smallcaps"
-        android:text="Personal Info"
+        android:text="@string/personalinfoheading"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        android:textColor="@color/colorPrimaryDark" />
+        android:textColor="@android:color/black" />
 
     <Spinner
         android:id="@+id/category"
@@ -50,7 +50,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="92dp"
         android:ems="8"
-        android:hint="My height in cms???"
+        android:hint="@string/heighthint"
         android:inputType="numberDecimal"
         android:textColor="@color/colorPrimaryDark" />
 
@@ -63,7 +63,7 @@
         android:layout_below="@+id/editHeight"
         android:layout_marginTop="12dp"
         android:ems="8"
-        android:hint="My weight in kgs???"
+        android:hint="@string/weighthint"
         android:inputType="numberDecimal"
         android:textColor="@color/colorPrimaryDark"
         android:translationY="-9dp" />
@@ -76,9 +76,19 @@
         android:layout_alignStart="@+id/editWeight"
         android:layout_below="@+id/editWeight"
         android:ems="8"
-        android:hint="My age in years???"
+        android:hint="@string/agehint"
         android:inputType="number"
         android:textColor="@color/colorPrimaryDark" />
+
+    <ImageView
+        android:id="@+id/imgIntake"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="12dp"
+        app:srcCompat="@drawable/blackarrow" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -105,10 +115,10 @@
             android:layout_toLeftOf="@+id/btnSubmit"
             android:layout_toStartOf="@+id/btnSubmit"
             android:fontFamily="sans-serif-smallcaps"
-            android:text="RESULT:"
+            android:text="@string/result"
             android:textAllCaps="false"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textColor="@color/colorPrimaryDark" />
+            android:textColor="@android:color/black" />
 
         <TextView
             android:id="@+id/txtResult"
@@ -119,9 +129,9 @@
             android:layout_alignParentStart="true"
             android:layout_marginBottom="80dp"
             android:layout_weight="0.11"
-            android:text=" Your BMI is 0.00.\n You are underweight.Maximim intake of calories daily is 1500 cal."
+            android:text="@string/personalinforesult"
             android:textAppearance="@android:style/TextAppearance.Medium"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@android:color/black"
             android:textSize="14sp" />
 
     </LinearLayout>
@@ -130,14 +140,26 @@
         android:id="@+id/btnSubmit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/editAge"
-        android:layout_alignRight="@+id/editAge"
-        android:layout_below="@+id/criteria"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
-        android:background="@color/colorPrimaryDark"
+        android:layout_marginEnd="34dp"
+        android:layout_marginRight="34dp"
+        android:background="@android:color/black"
         android:text="Submit"
-        android:textColor="@android:color/background_light" />
+        android:textColor="@android:color/background_light"
+        android:layout_below="@+id/criteria"
+        android:layout_alignRight="@+id/editAge"
+        android:layout_alignEnd="@+id/editAge" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.11"
+        android:textAppearance="@android:style/TextAppearance.Medium"
+        android:textColor="@android:color/black"
+        android:textSize="14sp"
+        android:text="@string/personalinfo"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true" />
 
 
 </RelativeLayout>

@@ -2,31 +2,17 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/Relativelayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/slus"
     tools:context="com.example.sarvesh.mycaloriecounter.TotalIntakeView">
 
-    <Button
-        android:id="@+id/btnAddFood"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryDark"
-        android:text="Add Food!!!"
-        android:textColor="@android:color/white"
-        android:layout_above="@+id/linearLayout"
-        android:layout_alignRight="@+id/dinnerCal"
-        android:layout_alignEnd="@+id/dinnerCal"
-        android:layout_marginRight="37dp"
-        android:layout_marginEnd="37dp" />
-
     <TextView
         android:id="@+id/textView12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="33dp"
         android:fontFamily="sans-serif-smallcaps"
         android:text="My Today's Food Quota"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
@@ -37,31 +23,29 @@
         android:id="@+id/textViewBreakfast"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/textView12"
-        android:layout_marginLeft="30dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="90dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="68dp"
         android:fontFamily="sans-serif-smallcaps"
         android:text="Breakfast"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textColor="@android:color/black"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:layout_below="@+id/txtDate"
+        android:layout_alignLeft="@+id/textView12"
+        android:layout_alignStart="@+id/textView12" />
 
     <TextView
         android:id="@+id/textViewLunch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/textViewBreakfast"
-        android:layout_alignRight="@+id/textViewBreakfast"
-        android:layout_below="@+id/textViewBreakfast"
-        android:layout_marginTop="26dp"
+        android:layout_marginTop="20dp"
         android:fontFamily="sans-serif-smallcaps"
         android:text="Lunch"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textColor="@android:color/black"
         android:textSize="24sp"
+        android:layout_below="@+id/breakfastCal"
         android:layout_alignLeft="@+id/textViewBreakfast"
         android:layout_alignStart="@+id/textViewBreakfast" />
 
@@ -69,15 +53,15 @@
         android:id="@+id/textViewDinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textViewSnacks"
-        android:layout_alignStart="@+id/textViewSnacks"
-        android:layout_below="@+id/textViewSnacks"
-        android:layout_marginTop="29dp"
+        android:layout_marginTop="27dp"
         android:fontFamily="sans-serif-smallcaps"
         android:text="Dinner"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textColor="@android:color/black"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:layout_below="@+id/snacksCal"
+        android:layout_alignLeft="@+id/textViewSnacks"
+        android:layout_alignStart="@+id/textViewSnacks" />
 
     <TextView
         android:id="@+id/textViewSnacks"
@@ -101,7 +85,7 @@
         android:layout_alignEnd="@+id/textView12"
         android:layout_alignRight="@+id/textView12"
         android:fontFamily="sans-serif-smallcaps"
-        android:text="0.0 "
+        android:text="0.0"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textColor="@android:color/black"
         android:textSize="24sp" />
@@ -148,17 +132,56 @@
         android:textColor="@android:color/black"
         android:textSize="24sp" />
 
+    <Button
+        android:id="@+id/btnSubmit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="31dp"
+        android:background="@android:color/black"
+        android:text="SUBMIT"
+        android:textColor="@android:color/white"
+        android:layout_below="@+id/dinnerCal"
+        android:layout_alignRight="@+id/textViewBreakfast"
+        android:layout_alignEnd="@+id/textViewBreakfast" />
+
+    <Button
+        android:id="@+id/btnAddFood"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="33dp"
+        android:layout_marginRight="33dp"
+        android:background="@android:color/black"
+        android:text="Add Food!!!"
+        android:textColor="@android:color/white"
+        android:layout_alignBaseline="@+id/btnSubmit"
+        android:layout_alignBottom="@+id/btnSubmit"
+        android:layout_alignRight="@+id/dinnerCal"
+        android:layout_alignEnd="@+id/dinnerCal" />
+
+    <TextView
+        android:id="@+id/txtDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView12"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:text="00-00-0000"
+        android:textSize="24sp" />
+
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="400dp"
         android:layout_height="400dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
         android:orientation="vertical"
         android:translationX="0dp"
         android:translationY="-10dp"
         android:weightSum="1"
-        android:layout_below="@+id/btnSubmit">
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/btnSubmit"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="7dp"
+        android:layout_marginStart="7dp">
 
         <TextView
             android:id="@+id/textView2"
@@ -175,7 +198,7 @@
             android:text="RESULT:"
             android:textAllCaps="false"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textColor="@color/colorPrimaryDark" />
+            android:textColor="@android:color/black" />
 
         <TextView
             android:id="@+id/txtAddF"
@@ -186,35 +209,50 @@
             android:layout_alignParentStart="true"
             android:layout_marginBottom="80dp"
             android:layout_weight="0.14"
-            android:text=" Your intake of calories is 0.0.\n You are underweight.Maximim intake of calories daily is 1500 cal."
+            android:text=" Your intake of calories is 0.0."
             android:textAppearance="@android:style/TextAppearance.Medium"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@android:color/black"
             android:textSize="14sp" />
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/btnSubmit"
+    <TextView
+        android:id="@+id/txtviewGoal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryDark"
-        android:text="SUBMIT"
-        android:textColor="@android:color/white"
-        android:layout_below="@+id/textViewDinner"
-        android:layout_alignLeft="@+id/textViewLunch"
-        android:layout_alignStart="@+id/textViewLunch"
-        android:layout_marginLeft="41dp"
-        android:layout_marginStart="41dp"
-        android:layout_marginTop="8dp" />
+        android:fontFamily="sans-serif-smallcaps"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="@android:color/black"
+        android:textSize="24sp"
+        android:text="Goal Calories"
+        android:layout_below="@+id/txtDate"
+        android:layout_alignLeft="@+id/btnSubmit"
+        android:layout_alignStart="@+id/btnSubmit"
+        android:layout_marginTop="18dp" />
 
     <TextView
-        android:id="@+id/txtDate"
+        android:id="@+id/txtviewGoalCalorie"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="00-00-0000"
+        android:fontFamily="sans-serif-smallcaps"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="@android:color/black"
         android:textSize="24sp"
-        android:layout_marginTop="25dp"
-        android:layout_below="@+id/textView12"
-        android:layout_centerHorizontal="true" />
+        android:text="0000"
+        android:layout_alignBaseline="@+id/txtviewGoal"
+        android:layout_alignBottom="@+id/txtviewGoal"
+        android:layout_alignLeft="@+id/btnAddFood"
+        android:layout_alignStart="@+id/btnAddFood" />
+
+    <ImageView
+        android:id="@+id/imgLogout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/txtDate"
+        android:layout_alignEnd="@+id/textView12"
+        android:layout_alignRight="@+id/textView12"
+        android:layout_marginEnd="11dp"
+        android:layout_marginRight="11dp"
+        app:srcCompat="@mipmap/login" />
 
 </RelativeLayout>
